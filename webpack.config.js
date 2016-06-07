@@ -7,7 +7,10 @@ module.exports = {
     resolve: {
         root: __dirname,
         alias: {
+            Main            : 'app/components/Main.jsx',
+            Nav             : 'app/components/Nav.jsx'
         },
+
         extensions: ['', '.js', '.jsx']
     },
     module : {
@@ -21,5 +24,6 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/
             }
         ]
-    }
+    },
+    devtool                 : 'cheap-module-eval-source-map'
 };
