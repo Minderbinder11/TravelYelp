@@ -9,6 +9,10 @@ module.exports = {
     filename: './public/bundle.js'
   },
 
+  externals:[{
+    xmlhttprequest: '{XMLHttpRequest:XMLHttpRequest}'
+  }],
+
   resolve: {
     root : __dirname,
     alias: {

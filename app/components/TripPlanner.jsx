@@ -1,7 +1,7 @@
 var React       = require('react');
 var InputButton = require('InputButton');
 var StoreTile   = require('StoreTile');
-var Yelp        = require('yelp');
+var yelp        = require('node-yelp-api');
 var merge       = require('merge');
 
 var TripPlanner = React.createClass({
@@ -28,22 +28,19 @@ var TripPlanner = React.createClass({
 
     };
 
-    var yelp = new Yelp({
-      consumer_key: 'RT0DIat-Mf3pVED4QmNPqQ',
-      consumer_secret: '1Ds2x1WW_kiur0kg8ciw4Pc3H60',
-      token: 'mgZ7dsRUDVZBRCkZQenE_RCKoCZyeTWm',
-      token_secret: 'SoRyMeGlJCiArpIeJcGHQgv9loI',
-    });
+    var parameters = {
+        term        : 'food',
+        location    : 'Miami'
+    };
+
 
 // See http://www.yelp.com/developers/documentation/v2/search_api
-    yelp.search({ term: 'food', location: 'Montreal' })
-      .then(function (data) {
+    yelp.search(merge(options, parameters), (data) => {
         console.log(data);
-      })
-      .catch(function (err) {
+      }, (err) => {
         console.error(err);
       });
-  },
+    },
 
 
   renderTiles: function () {
